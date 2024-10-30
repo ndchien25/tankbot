@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: zarena-tank
+    env_file:
+      - .env
+    volumes:
+      - ./src:/app/src
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1GiB
+        reservations:
+          cpus: '0.25'
+          memory: 250M
